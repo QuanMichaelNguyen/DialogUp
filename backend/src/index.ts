@@ -1,10 +1,18 @@
-import express from "express"
-import authRoutes from "../src/routes/AuthRoutes.js"
+import express from "express";
+import authRoutes from "../src/routes/authRoutes.js";
+import cookieParser from "cookie-parser";
+
+import dotenv from "dotenv"
+dotenv.config();
+
 
 const app = express()
 
+app.use(cookieParser()); // use for parsing cookies
+app.use(express.json()); // use for application/json
+
 app.use("/api/auth", authRoutes)
-app.use("/api/messages", messageRoutes)
+// app.use("/api/messages", messageRoutes)
 
 app.listen(5000, () => {
     console.log("Server running on port 5000")
